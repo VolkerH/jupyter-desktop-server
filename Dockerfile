@@ -65,6 +65,9 @@ RUN --mount=type=cache,id=custom-pip,target=/root/.cache/pip \
     && find /opt/conda/ -follow -type f -name '*.a' -delete \
     && find /opt/conda/ -follow -type f -name '*.pyc' -delete
 
+RUN  cd /opt/install/spacem && conda run --name spacem python -m \
+     pip install -e .
+
 # Trigger initial Cellpose model download to cache models.
 RUN --mount=type=cache,id=custom-cellpose,target=$HOME/.cellpose \
     conda run -n spacem python -c "import cellpose.models"

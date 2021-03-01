@@ -59,7 +59,7 @@ RUN --mount=type=cache,id=custom-pip,target=/root/.cache/pip \
     pip install torch==1.7.1+cpu -f https://download.pytorch.org/whl/torch_stable.html \
 # Then install all remaining Python packages. Compile to space-saving byte-code instead of keeping source code.
     && conda run --name spacem python -m \
-    pip install --compile -r /tmp/requirements.txt -r /tmp/dev_requirements.txt \
+    pip install --compile -r /opt/install/spacem/requirements.txt -r /opt/install/spacem/dev_requirements.txt \
 # Finally cleanup after a Conda install
     && conda clean --all --force-pkgs-dirs --yes \
     && find /opt/conda/ -follow -type f -name '*.a' -delete \
